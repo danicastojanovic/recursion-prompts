@@ -140,6 +140,14 @@ reverse('');
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toLowerCase();
+  if (string === '') {
+    return true;
+  }
+  if (string.slice(0, 1) === string.slice(-1)) {
+    return palindrome (string.slice(1, string.length - 1));
+  }
+  return false;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -148,6 +156,32 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+  if (x === 0) {
+    return 0
+  }
+
+  if (y < 0) {
+    y = -y;
+  }
+  var isPositive = true;
+  if (x < 0) {
+    isPositive = false;
+    x = -x;
+  }
+  if (x < y) {
+    if (isPositive) {
+      return x;
+    }
+    return -x;
+  }
+  if (isPositive) {
+    return modulo(x - y, y);
+  } else {
+    return - modulo(x - y, y);
+  }
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or

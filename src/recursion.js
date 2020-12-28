@@ -184,9 +184,26 @@ var modulo = function(x, y) {
   }
 };
 
-// 12. Write a function that multiplies two numbers without using the * operator or
-// Math methods.
 var multiply = function(x, y) {
+  if (x === 0) {
+    return 0;
+  }
+  var isPositive = true;
+  if (x < 0 && y > 0) {
+    isPositive = false;
+    x = -x;
+  } else if (y < 0 && x > 0) {
+    isPositive = false;
+    y = -y;
+  } else if (x < 0 && y < 0) {
+    x = -x;
+    y = -y;
+  }
+
+  if (isPositive) {
+    return y + multiply(x - 1, y);
+  }
+  return - (y + multiply(x - 1, y));
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
@@ -255,6 +272,16 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  var count = 0;
+
+  for (var key in obj) {
+    if (obj[key] === value) {
+      count++;
+    } else if (typeof obj[key] === 'object') {
+      count += countValuesInObj(obj[key], value);
+    }
+  }
+  return count;
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename

@@ -180,8 +180,8 @@ var modulo = function(x, y) {
     }
   }
 
-  modulo(x-y, y);
-}
+  return modulo(x-y, y);
+};
 
 var multiply = function(x, y) {
   if (x === 0) {
@@ -302,6 +302,15 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function(n) {
+  if (n<=0){
+    return null;
+  } else if (n===1) {
+    return [0,1];
+  } else {
+    var s = fibonacci(n-1);
+    s.push(s[s.length-1] + s[s.length-2]);
+    return s;
+  }
 };
 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.

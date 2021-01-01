@@ -162,27 +162,35 @@ var modulo = function(x, y) {
   if (x === 0) {
     return 0;
   }
-
   if (y < 0) {
     y = -y;
   }
-  ifPositive = true;
+  var isPositive = true;
   if (x < 0) {
-    isPositive = false;
     x = -x;
+    isPositive = false;
   }
 
   if (x < y) {
     if (isPositive) {
       return x;
+    } else {// 13. Write a function that divides two numbers without using the / operator or
+// Math methods to arrive at an approximate quotient (ignore decimal endings).
+var divide = function(x, y) {
+};
+      return -x;
+    }
+  } else {
+    if (isPositive) {
+      return modulo(x-y, y);
     } else {
-    return -x;
+      return -modulo(x-y, y);
     }
   }
 
-  return modulo(x-y, y);
 };
 
+// 12. Multiply
 var multiply = function(x, y) {
   if (x === 0) {
     return 0;
@@ -208,6 +216,35 @@ var multiply = function(x, y) {
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+  if (x === 0) {
+    return 0;
+  }
+  var isPositive = true;
+  if (x < 0 && y < 0) {
+    x = -x;
+    y = -y;
+  }
+  if (x < 0 && y > 0) {
+    isPositive = false;
+    x = -x;
+  }
+  if (y < 0 && x > 0) {
+    isPositive = false;
+    y = -y;
+  }
+
+  if (x < y) {
+    return 0;
+  }
+  if (isPositive) {
+    return 1 + divide(x-y, y);
+  } else {
+    return -(1 + divide(x-y, y));
+  }
+
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
@@ -319,12 +356,22 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  if (n<0) {
+    return null;
+  } else if (n===0) {
+    return 0;
+  } else if (n===1) {
+    return 1;
+  } else {
+    return nthFibo(n-1) + nthFibo(n-2);
+  }
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(array) {
+
 };
 
 // 28. Given an array of strings, capitalize the first letter of each index.

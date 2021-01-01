@@ -160,29 +160,28 @@ var modulo = function(x, y) {
     return NaN;
   }
   if (x === 0) {
-    return 0
+    return 0;
   }
 
   if (y < 0) {
     y = -y;
   }
-  var isPositive = true;
+  ifPositive = true;
   if (x < 0) {
     isPositive = false;
     x = -x;
   }
+
   if (x < y) {
     if (isPositive) {
       return x;
-    }
+    } else {
     return -x;
+    }
   }
-  if (isPositive) {
-    return modulo(x - y, y);
-  } else {
-    return - modulo(x - y, y);
-  }
-};
+
+  modulo(x-y, y);
+}
 
 var multiply = function(x, y) {
   if (x === 0) {

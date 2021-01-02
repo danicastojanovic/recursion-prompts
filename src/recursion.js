@@ -518,8 +518,7 @@ var flatten = function(array) {
 
 // 31. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {p:1, o:2, t:2, a:1}
-var letterTally = function(str, obj) {
-  obj = obj || {};
+var letterTally = function(str, obj = {}) {
   if (str.length === 0) {
     return obj;
   }
@@ -551,6 +550,13 @@ var compress = function(list) {
 // itself.
 // augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
 var augmentElements = function(array, aug) {
+  if (array.length === 0) {
+    return [];
+  }
+  var result = augmentElements(array.slice(1), aug);
+  array[0].push(aug);
+  result.unshift(array[0]);
+  return result;
 };
 
 // 34. Reduce a series of zeroes to a single 0.
